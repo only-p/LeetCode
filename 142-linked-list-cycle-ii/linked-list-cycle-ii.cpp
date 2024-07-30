@@ -8,17 +8,35 @@
  */
 class Solution {
 public:
-    ListNode *detectCycle(ListNode *head) {
-        unordered_map<ListNode*,int>m;
-        if(head==NULL)return NULL;
-        ListNode *node = head;
-        m[head]+=1;
-        while(node->next!=NULL){
-            node = node->next;
-            if(m.find(node)!=m.end())return node;
-            m[node]+=1;
+    ListNode* detectCycle(ListNode* head) {
+        if(head==NULL )return NULL;
+        ListNode *slow = head, *fast = head;
+        int loop=0;
+        while (fast != NULL && fast->next != NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
+            if (slow == fast){
+                loop = 1;
+                break;
+            }
+                
         }
-        return NULL;
-        
+       
+        if (loop==0) return NULL;
+        int cnt = 1;
+        cout<<slow->val<<" ";
+        while (slow->next != fast) {
+            cnt++;
+            slow = slow->next;
+        }
+        slow = head, fast = head;
+        for (int i = 0; i < cnt; i++) {
+            fast = fast->next;
+        }
+        while (slow != fast) {
+            slow = slow->next;
+            fast = fast->next;
+        }
+        return slow;
     }
 };
