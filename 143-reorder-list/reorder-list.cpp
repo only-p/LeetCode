@@ -30,14 +30,16 @@ public:
 
         ListNode* secondHalf = reverse(slow);
         ListNode* firstHalf = head;
+        ListNode *temp1, *temp2;
         while (firstHalf && secondHalf) {
-            ListNode* temp = firstHalf->next;
-            firstHalf->next = secondHalf;
-            firstHalf = temp;
+            temp1 = firstHalf->next;
+            temp2 = secondHalf->next;
 
-            temp = secondHalf->next;
+            firstHalf->next = secondHalf;
+            firstHalf = temp1;
+
             secondHalf->next = firstHalf;
-            secondHalf = temp;
+            secondHalf = temp2;
         }
         if (firstHalf)
             firstHalf->next = NULL;
