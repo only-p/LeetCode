@@ -30,9 +30,6 @@ public:
             ListNode* lastNodeofPrevList = prev;
             ListNode* lastNodeOfSubList = current;
             ListNode* next = NULL;
-            
-            // prev = NULL;
-
             // Reverse `k` nodes
             for (int i = 0; i < k; i++) {
                 next = current->next;
@@ -44,11 +41,9 @@ public:
             if (lastNodeofPrevList) {
                 lastNodeofPrevList->next = prev;
             } else {
-                head = prev; // Update the head of the entire list
+                head = prev;
             }
-
             lastNodeOfSubList->next = current;
-
             prev = lastNodeOfSubList;
             length -= k;
         }
