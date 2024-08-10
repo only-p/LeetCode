@@ -21,6 +21,7 @@ public:
             current = current->next;
             n++;
         }
+        // last node to first node
         current->next = head;
         k = k % n;
         int stepsToNewHead = n - k;
