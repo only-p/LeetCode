@@ -19,11 +19,11 @@ public:
 
         queue<TreeNode*> p;
         p.push(root);
-        int x =0;
+        int level =0;
         while (!p.empty()) {
-            int level = p.size();
+            int levelSize = p.size();
             vector<int> temp;
-            for (int i = 0; i < level; i++) {
+            for (int i = 0; i < levelSize; i++) {
                 TreeNode* node = p.front();
                 p.pop();
                 temp.push_back(node->val);
@@ -32,8 +32,8 @@ public:
                 if (node->right)
                     p.push(node->right);
             }
-            if(x%2)reverse(temp.begin(),temp.end());
-            x++;
+            if(level%2)reverse(temp.begin(),temp.end());
+            level++;
             ans.push_back(temp);
         }
         return ans;
