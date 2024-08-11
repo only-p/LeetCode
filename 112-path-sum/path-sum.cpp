@@ -17,10 +17,8 @@ class Solution {
         sum = sum - root->val;
         if (sum == 0 && root->left == NULL && root->right == NULL) {
             return true;
-        } 
-
-        return (dfs(root->left, sum) || dfs(root->right, sum)) ;
-        
+        }
+        return (dfs(root->left, sum) || dfs(root->right, sum));
     }
 
 public:
