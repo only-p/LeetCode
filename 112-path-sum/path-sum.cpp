@@ -14,18 +14,13 @@ class Solution {
     bool dfs(TreeNode* root, int sum) {
         if (!root)
             return false;
-        sum = sum-root->val;
+        sum = sum - root->val;
         if (sum == 0 && root->left == NULL && root->right == NULL) {
             return true;
-        } else if (root->left == NULL && root->right == NULL)
-            return false;
+        } 
 
-        if (dfs(root->left, sum ) ||
-            dfs(root->right, sum )) {
-            return true;
-        } else {
-            return false;
-        }
+        return (dfs(root->left, sum) || dfs(root->right, sum)) ;
+        
     }
 
 public:
