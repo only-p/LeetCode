@@ -21,8 +21,8 @@ class Solution {
         long pathSum = 0;
 
         // Find the sums of all sub-paths in the current path list
-        for (auto it = currentPath.rbegin(); it != currentPath.rend(); ++it) {
-            pathSum += *it;
+        for (int i = currentPath.size() - 1; i >= 0; i--) {
+            pathSum += currentPath[i];
             // If the sum of any sub-path is equal to 'S', increment the answer
             // count
             if (pathSum == S) {
