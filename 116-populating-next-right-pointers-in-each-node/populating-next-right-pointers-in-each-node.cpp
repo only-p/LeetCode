@@ -24,9 +24,9 @@ public:
         q.push(root);
         while (!q.empty()) {
             int levelSize = q.size();
-            
+             Node* node =NULL;
             for (int i = 0; i < levelSize; i++) {
-                Node* node = q.front();
+                node = q.front();
                 q.pop();
                 if(node->left)q.push(node->left);
                 if(node->right)q.push(node->right);
