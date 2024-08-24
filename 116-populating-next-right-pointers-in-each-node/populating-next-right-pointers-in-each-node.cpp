@@ -19,32 +19,23 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
-
-        // vector<vector<int>> ans;
-        if (root == NULL)
-            return root;
-
-        queue<Node*> pq;
-        pq.push(root);
-        while (!pq.empty()) {
-            int levelsize = pq.size();
-            vector<int> temp;
-            for (int i = 0; i < levelsize; i++) {
-                Node* node = pq.front();
-                pq.pop();
-
-                temp.push_back(node->val);
-                if (node->left)
-                    pq.push(node->left);
-                if (node->right)
-                    pq.push(node->right);
-
-                if(i==levelsize-1)node->next =NULL;
+        if(!root)return root;
+        queue<Node*> q;
+        q.push(root);
+        while (!q.empty()) {
+            int levelSize = q.size();
+            
+            for (int i = 0; i < levelSize; i++) {
+                Node* node = q.front();
+                q.pop();
+                if(node->left)q.push(node->left);
+                if(node->right)q.push(node->right);
+                if(i == levelSize-1)node->next = NULL;
                 else{
-                    node->next = pq.front();
+                    node->next = q.front();
                 }
             }
-           
+            
         }
         return root;
     }
