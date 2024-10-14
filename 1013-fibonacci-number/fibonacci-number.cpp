@@ -20,12 +20,12 @@ public:
         // return dp[n];
         if (n < 2)
             return n;
-        int prev1 = 0, prev2 = 1;
+        int prev1 = 1, prev2 = 0;
         int current = 0;
         for (int i = 2; i <= n; i++) {
             current = prev1 + prev2;
-            prev1 = prev2;
-            prev2 = current;
+            prev2 = prev1;
+            prev1 = current;
         }
         return current;
     }
