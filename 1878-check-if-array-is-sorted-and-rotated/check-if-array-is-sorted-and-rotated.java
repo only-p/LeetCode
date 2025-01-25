@@ -1,16 +1,13 @@
 class Solution {
     public boolean check(int[] nums) {
-        int cnt=0;
+        int cnt = 0;
         int n = nums.length;
-        for(int i=0;i<n;i++){
-            cnt =0;
-            for(int j=0;j<n;j++){
-                // cout<<(i+j)%n<<"  "<<(i+j+1)%n ;
-                if(nums[(i+j)%n]>nums[(i+j+1)%n])cnt++;
-            }
-            if(cnt<2)return true;
-
+        for (int i = 0; i < n - 1; i++) {
+            if (nums[i] > nums[i + 1])
+                cnt++;
         }
-        return false;
+        if (nums[n - 1] > nums[0])
+            cnt++;
+        return cnt > 1 ? false : true;
     }
 }
