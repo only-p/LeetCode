@@ -1,6 +1,7 @@
 class MinStack {
 public:
     stack<int> s, ms;
+    // ms for min till now
     MinStack() {}
 
     void push(int val) {
