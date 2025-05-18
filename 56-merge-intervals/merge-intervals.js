@@ -5,7 +5,6 @@
 var merge = function (intervals) {
     const ans = [];
     intervals.sort((a, b) => a[0] - b[0]);
-    console.log(intervals)
     let start = intervals[0][0];
     let end = intervals[0][1];
 
