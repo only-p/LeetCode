@@ -19,7 +19,6 @@ var sortColors = function (nums) {
         else{
             i++;
         }
-        console.log(nums)
     }
 
 };
