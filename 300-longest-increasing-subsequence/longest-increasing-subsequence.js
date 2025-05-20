@@ -3,25 +3,30 @@
  * @return {number}
  */
 var lengthOfLIS = function(nums) {
-    const n = nums.length;
-    const memo = new Array(n).fill(-1);
+   const n = nums.length;
+    // Create a 2D memo table: memo[currentIdx][prevIdx+1]
+    // We use prevIdx+1 because prevIdx can be -1 initially
+    const memo = Array.from({ length: n }, () => 
+                new Array(n + 1).fill(-1));
     
-    function lisHelper(prevIndex, currentIndex) {
-        if (currentIndex === n) return 0;
+    function lisHelper(currentIdx, prevIdx) {
+        if (currentIdx === n) return 0;
         
-        // If we've already computed this state, return it
-        if (memo[prevIndex + 1] !== -1) return memo[prevIndex + 1];
-        
-        let taken = 0;
-        if (prevIndex === -1 || nums[currentIndex] > nums[prevIndex]) {
-            taken = 1 + lisHelper(currentIndex, currentIndex + 1);
+        // Check if already computed
+        if (memo[currentIdx][prevIdx + 1] !== -1) {
+            return memo[currentIdx][prevIdx + 1];
         }
         
-        const notTaken = lisHelper(prevIndex, currentIndex + 1);
+        let take = 0;
+        if (prevIdx === -1 || nums[currentIdx] > nums[prevIdx]) {
+            take = 1 + lisHelper(currentIdx + 1, currentIdx);
+        }
         
-        memo[prevIndex + 1] = Math.max(taken, notTaken);
-        return memo[prevIndex + 1];
+        const skip = lisHelper(currentIdx + 1, prevIdx);
+        
+        memo[currentIdx][prevIdx + 1] = Math.max(take, skip);
+        return memo[currentIdx][prevIdx + 1];
     }
     
-    return lisHelper(-1, 0);
+    return lisHelper(0, -1);
 };
