@@ -7,7 +7,7 @@ var maxProfit = function (prices) {
     // Create a 3D DP table: dp[idx][buy][cnt]
     const dp = Array.from({ length: n }, () =>
         Array.from({ length: 2 }, () =>
-            Array(3).fill(-1)));
+            Array(2).fill(-1)));
 
     function fn(idx, buy, cnt) {
         if (idx === n) return 0;
