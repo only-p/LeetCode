@@ -13,6 +13,7 @@ public:
                low++;
                 
             }
+            // once i user  all k swap my ans only update when maxfrq increase
             ans = max(ans,high-low+1);
         }
         return ans;
