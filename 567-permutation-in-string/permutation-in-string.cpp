@@ -11,12 +11,7 @@ public:
                 m2[s2[i]]++;
             else {
                 m2[s2[i]]++;
-                for (int j = 0; j < s1.size(); j++) {
-                    if (m1[s1[j]] != m2[s1[j]])
-                        break;
-                    if (j == s1.size() - 1)
-                        return true;
-                }
+               if(m1==m2)return true;
                 if (m2[s2[low]] == 1)
                     m2.erase(s2[low]);
                 else
