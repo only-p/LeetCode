@@ -10,19 +10,20 @@
  * };
  */
 class Solution {
-public:
-int ans =INT_MIN;
-    int dfs(TreeNode* root){
-        if(!root)return 0;
-        int left =0;
-        int right =0;
-        if(root->left) left = max(0,dfs(root->left));
-        if(root->right) right=  max(0,dfs(root->right));
+    int solve(TreeNode* root,int &ans){
+        if(root==NULL)return 0;
+        int left = solve(root->left,ans);
+        int right  = solve(root->right,ans);
+        // cout<<left<<"->"<<right<<"";
+
         ans = max(ans,left+right+root->val);
-        return root->val+max(left,right);
+        int total = root->val+(max(left,right));
+        return max(total,0) ;
     }
+public:
     int maxPathSum(TreeNode* root) {
-        dfs(root);
+        int ans=INT_MIN;
+        solve(root,ans);
         return ans;
         
     }
