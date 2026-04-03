@@ -10,20 +10,18 @@
  * };
  */
 class Solution {
-public:
-int ans =0; 
-    int dfs(TreeNode* root){
-        if(!root)return 0;
-        int left =0;
-        int right = 0;
-        if(root->left)left = 1+ dfs(root->left);
-        if(root->right)right = 1+ dfs(root->right);
-        ans = max(ans,left+right);
-        return max(left,right);
+    int solve(TreeNode* root,int &dia){
+        if(root==NULL)return 0;
+        int left = solve(root->left,dia);
+        int right = solve(root->right,dia);
+        dia = max(dia,left+right+1);
+        return 1+max(left,right);
+
     }
+public:
     int diameterOfBinaryTree(TreeNode* root) {
-        dfs(root);
-        return ans;
-        
+        int dia=0;
+        solve(root,dia);
+        return dia-1;
     }
 };
